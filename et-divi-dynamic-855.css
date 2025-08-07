@@ -1,0 +1,8 @@
+@font-face {
+    font-family: ETmodules;
+    font-display: block;
+    src: url(//2024.hipc.org/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.eot);
+    src: url(//2024.hipc.org/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.eot?#iefix) format("embedded-opentype"), url(//2024.hipc.org/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.woff) format("woff"), url(//2024.hipc.org/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.ttf) format("truetype"), url(//2024.hipc.org/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.svg#ETmodules) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
