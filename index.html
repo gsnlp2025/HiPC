@@ -7959,12 +7959,177 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
   }
   .papers-table tbody td { border-bottom: 1px solid #eaeaea; }
 }
+.schedule-header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  .schedule-header h2 { margin: 0 0 10px 0; font-size: 1.2rem; }
+  .schedule-header .meta { font-size: 0.9rem; color: #555; }
+
+  /* Table Styling */
+  .responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+  }
+
+  .responsive-table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+
+  .responsive-table thead tr {
+    
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+
+  .responsive-table th { font-size: .85em; letter-spacing: .1em; text-transform: uppercase; }
+
+  /* --- MOBILE RESPONSIVE LOGIC (Max-width 768px) --- */
+  @media screen and (max-width: 768px) {
+    .responsive-table { border: 0; }
+
+    /* Force table elements to display as blocks */
+    .responsive-table thead { border: none; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+    
+    .responsive-table tr {
+      display: block;
+      border: 1px solid #ddd;
+      border-bottom: 3px solid #003366;
+      margin-bottom: 15px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .responsive-table td {
+      display: block;
+      font-size: .95em;
+      text-align: right; /* Content aligns right */
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 40%; /* Make room for the label */
+    }
+    
+    .responsive-table td::before {
+      /* Uses the data-label attribute to create the label */
+      content: attr(data-label);
+      position: absolute;
+      left: 15px;
+      width: 35%;
+      font-weight: bold;
+      text-align: left;
+      
+    }
+    
+    /* Special styling for single-column rows like Lunch/Tea */
+    .responsive-table td[colspan="3"] {
+        text-align: center;
+        background-color: #f9f9f9;
+        padding-left: 15px;
+        font-weight: bold;
+    }
+    .responsive-table td[colspan="3"]::before { content: ""; } /* Hide label for break rows */
+  }
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    background-color: #f0f2f5;
+  }
+
+  /* 1. The Window Container */
+  .carousel-container {
+    width: 90%; /* Or fixed width like 800px */
+    max-width: 1000px;
+    height: 200px; /* Define height of the carousel */
+    overflow: hidden; /* Hide images off-screen */
+    position: relative;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+  }
+
+  /* Optional: Gradient Fade Effect on sides */
+  .carousel-container::before,
+  .carousel-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+  }
+  .carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+  }
+  .carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+  }
+
+
+  /* 2. The Moving Track */
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    /* The width must fit all images. We animate half its width. */
+    /* Ensure there are enough images to fill twice the screen width */
+    width: max-content; 
+    animation: scrollSmooth 25s linear infinite;
+  }
+  
+  /* Pause scrolling on hover (optional) */
+  .carousel-track:hover {
+      animation-play-state: paused;
+  }
+
+
+  /* 3. The Individual Images */
+  .carousel-image {
+    height: 100%;
+    /* Fixed width for consistency, or use auto to respect image aspect ratio */
+    width: 300px; 
+    object-fit: cover; /* Ensures images fill the box without stretching */
+    margin-right: 20px; /* Spacing between images */
+    border-radius: 8px;
+  }
+
+  /* 4. The Infinite Animation */
+  @keyframes scrollSmooth {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* Move left by exactly 50% of the track width. 
+         Since the track holds two duplicate sets, this resets seamlessly. */
+      transform: translateX(-50%);
+    }
+  }
+
+
 
 /* Accessibility: focus styles */
 .papers-table a:focus, .papers-table td:focus { outline: 3px solid #cce4ff; outline-offset: 2px; }
 </style>
 
-    </style>
+
 </head>
 
 <body class="page-template-default page page-id-855 et_pb_button_helper_class et_transparent_nav et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_svg_logo et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db">
@@ -8066,105 +8231,76 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
   	<div style="margin-top: 20px;"></div> 
     <h4 style="color:#000000; font-size: 18px;"><strong>Workshop Schedule</strong></h4>
 													<div style="margin-top: 20px;"></div>
-       <table border="1" cellspacing="0" cellpadding="6" style="width:100%; border-collapse:collapse;">
+    
+ 
+  
+  
+
+<div class="schedule-header">
+  <h2>HiPC 2025 WORKSHOP SCHEDULE</h2>
+  <p><strong>1st Workshop on Democratizing GenAI and Scalable NLP with HiPC for Societal Impact (GSNLP-HiPC)</strong></p>
+  <div class="meta">Date: 17-Dec-2025 | Venue: Thrive Breakout Room</div>
+</div>
+
+<table class="responsive-table">
   <thead>
     <tr>
-      <th colspan="3" style="text-align:center; font-weight:bold;">
-        HiPC 2025 WORKSHOP SCHEDULE<br>
-        1st Workshop on Democratizing GenAI and Scalable NLP with HiPC for Societal Impact (GSNLP-HiPC)
-      </th>
-    </tr>
-    <tr>
-      <th colspan="3" style="text-align:center;">
-        Date: 17-Dec-2025 &nbsp;&nbsp;&nbsp; Venue: Thrive Breakout Room
-      </th>
-    </tr>
-    <tr>
-      <th style="text-align:center;">Time</th>
-      <th style="text-align:center;">Paper ID/Title</th>
-      <th style="text-align:center;">Authors/Affiliation</th>
+      <th scope="col" style="width: 15%;">Time</th>
+      <th scope="col" style="width: 50%;">Paper ID/Title</th>
+      <th scope="col" style="width: 35%;">Authors/Affiliation</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:center;">8:30 am</td>
-      <td style="text-align:center;">Registration</td>
-      <td style="text-align:center;"></td>
+      <td data-label="Time">8:30 am</td>
+      <td colspan="2" style="text-align:center; font-weight:bold; background-color:#f0f0f0;">Registration</td>
     </tr>
     <tr>
-      <td style="text-align:center;">8:40 am</td>
-      <td>GSNLP-HiPC11	
-Agentic AI Meets RAG: A Framework for Domain-Specific Knowledge Evaluation
-</td>
-      <td>Vijay Kumar K, Viswanath V S, 
-      CDAC Chennai
-Abirami A M, Uma K V, 
-     Thiagarajar College of Engg. Madurai
-</td>
+      <td data-label="Time">8:40 am</td>
+      <td data-label="Paper ID/Title"><strong>GSNLP-HiPC11</strong><br>Agentic AI Meets RAG: A Framework for Domain-Specific Knowledge Evaluation</td>
+      <td data-label="Authors">Vijay Kumar K, Viswanath V S (CDAC Chennai)<br>Abirami A M, Uma K V (Thiagarajar College of Engg. Madurai)</td>
     </tr>
     <tr>
-      <td style="text-align:center;">9:00 am</td>
-      <td>GSNLP-HiPC12
-Generative Augmentation With Resnet-Enhanced Dcgan For Image-Based Malware Detection
-</td>
-      <td>Arul Tharani,  Suntharakantham K,
-N Gayathri, S Mercy Shalinie, 
-       Thiagarajar College of Engg. Madurai
-</td>
+      <td data-label="Time">9:00 am</td>
+      <td data-label="Paper ID/Title"><strong>GSNLP-HiPC12</strong><br>Generative Augmentation With Resnet-Enhanced Dcgan For Image-Based Malware Detection</td>
+      <td data-label="Authors">Arul Tharani, Suntharakantham K, N Gayathri, S Mercy Shalinie (Thiagarajar College of Engg. Madurai)</td>
     </tr>
     <tr>
-      <td style="text-align:center;">9:20 am</td>
-      <td>GSNLP-HiPC13	
-A Novel Multi-Criteria Tourism Recommendation System for Tamil Nadu Using NLP
-</td>
-      <td>Dhivya K, Suganya R
-       Vellore Institute of Technology, Chennai
-   
-</td>
+      <td data-label="Time">9:20 am</td>
+      <td data-label="Paper ID/Title"><strong>GSNLP-HiPC13</strong><br>A Novel Multi-Criteria Tourism Recommendation System for Tamil Nadu Using NLP</td>
+      <td data-label="Authors">Dhivya K, Suganya R (Vellore Institute of Technology, Chennai)</td>
     </tr>
     <tr>
-      <td style="text-align:center;">9:40 am</td>
-      <td>GSNLP-HiPC14	
-Image Patch-Question feature fusion model for HPC based Visual Question and Answering
-</td>
-      <td>Isunuri Bala Venkateswarlu 
-   SRM University, AP
-Haridas Adinarayana, IBM India
-</td>
+      <td data-label="Time">9:40 am</td>
+      <td data-label="Paper ID/Title"><strong>GSNLP-HiPC14</strong><br>Image Patch-Question feature fusion model for HPC based Visual Question and Answering</td>
+      <td data-label="Authors">Isunuri Bala Venkateswarlu (SRM University, AP)<br>Haridas Adinarayana (IBM India)</td>
     </tr>
     <tr>
-      <td style="text-align:center;">10:00 am</td>
-      <td>GSNLP-HiPC15
-AgriLens: Semantic Retrieval in Agricultural Texts Using Topic Modeling and Language Models
-</td>
-      <td>Heba Shakeel, Tanvir Ahmad, 
-     Jamia Milia Islamia University
-Tanya Liyaqat, Sharda University 
-Chandni Saxena, The Chinese University
-</td>
+      <td data-label="Time">10:00 am</td>
+      <td data-label="Paper ID/Title"><strong>GSNLP-HiPC15</strong><br>AgriLens: Semantic Retrieval in Agricultural Texts Using Topic Modeling and Language Models</td>
+      <td data-label="Authors">Heba Shakeel, Tanvir Ahmad (Jamia Milia Islamia University)<br>Tanya Liyaqat (Sharda University)<br>Chandni Saxena (The Chinese University)</td>
     </tr>
     <tr>
-      <td style="text-align:center;">10:30 am</td>
-      <td style="text-align:center;">Tea Break, Networking</td>
-      <td></td>
+      <td data-label="Time">10:30 am</td>
+      <td colspan="2" style="text-align:center; font-weight:bold; background-color:#f0f0f0;">Tea Break, Networking</td>
     </tr>
     <tr>
-      <td style="text-align:center;">11:00 am</td>
-      <td>Keynote Address: Dr. Parameswari Krishnamurthy, IIIT Hyderabad — Talk: LLMs and their Capabilities in Indian Languages Applications</td>
-      <td></td>
+      <td data-label="Time">11:00 am</td>
+      <td data-label="Keynote" colspan="2"><strong>Keynote Address:</strong> Dr. Parameswari Krishnamurthy, IIIT Hyderabad<br><em>Talk: LLMs and their Capabilities in Indian Languages Applications</em></td>
     </tr>
     <tr>
-      <td style="text-align:center;">12:30 pm</td>
-      <td style="text-align:center;">Discussions, Networking</td>
-      <td></td>
+      <td data-label="Time">12:30 pm</td>
+      <td colspan="2" style="text-align:center; font-weight:bold; background-color:#f0f0f0;">Discussions, Networking</td>
     </tr>
     <tr>
-      <td style="text-align:center;">1:00 pm</td>
-      <td style="text-align:center;">Lunch Break</td>
-      <td></td>
+      <td data-label="Time">1:00 pm</td>
+      <td colspan="2" style="text-align:center; font-weight:bold; background-color:#f0f0f0;">Lunch Break</td>
     </tr>
   </tbody>
 </table>
+
+</body>
+</html>
 
 <!-- Notes -->
 <p><strong>Note:</strong></p>
@@ -8370,7 +8506,23 @@ Srimathi S
     <em>Talk:</em> "Scalable Computing for Generative AI: Architectures, Challenges, and Opportunities"
 	</li>
 </ul>
+<div style="margin-top: 20px;"></div>
 
+                                                    
+    <h4 style="color:#000000; font-size: 18px;"><strong>OUR GALLERY</strong></h4>
+
+  
+<div class="carousel-container">
+  <div class="carousel-track">
+    <img class="carousel-image" src="https://github.com/gsnlp2025/HiPC/blob/main/DSC01625.jpg?raw=true" alt="Landscape 1">
+    <img class="carousel-image" src="https://github.com/gsnlp2025/HiPC/blob/main/DSC01625.jpg?raw=true" alt="Landscape 2">
+    <img class="carousel-image" src="https://github.com/gsnlp2025/HiPC/blob/main/DSC01704.jpg?raw=true" alt="Landscape 3">
+    <img class="carousel-image" src="https://github.com/gsnlp2025/HiPC/blob/main/DSC01704.jpg?raw=true" alt="Landscape 4">
+    <img class="carousel-image" src="https://github.com/gsnlp2025/HiPC/blob/main/image2.png?raw=true" alt="Landscape 5">
+
+    
+  </div>
+</div>
 
                                                  
 
@@ -8478,6 +8630,7 @@ Srimathi S
             <li class="fa-brands-fa-square-x-twitter" len="0"><a href="https://twitter.com/hipcconf" target="_blank" class="fa-brands-fa-square-x-twitter"><i class="fa-brands fa-square-x-twitter"></i></a></li>
             <li class="fab-fa-linkedin" len="0"><a href="https://www.linkedin.com/groups/53197/" target="_blank" class="fab-fa-linkedin"><i class="fab fa-linkedin"></i></a></li>
         </ul>
+        
     </div>
     </body>
 	</html>
