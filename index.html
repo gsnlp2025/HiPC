@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-US">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script data-no-optimize="1">
         var litespeed_docref = sessionStorage.getItem("litespeed_docref");
         litespeed_docref && (Object.defineProperty(document, "referrer", {
@@ -8044,34 +8048,28 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .responsive-table td[colspan="3"]::before { content: ""; } /* Hide label for break rows */
   }
-body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50vh;
-    background-color: #f0f2f5;
-  }
+  
 
-  /* 1. The Window Container */
+
+
+  /* 1. Fluid Container */
   .carousel-container {
-    width: 90%; /* Or fixed width like 800px */
-    max-width: 1000px;
-    height: 200px; /* Define height of the carousel */
-    overflow: hidden; /* Hide images off-screen */
+    width: 100%;
+    overflow: hidden;
     position: relative;
     background: white;
+    padding: 20px 0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 12px;
   }
 
-  /* Optional: Gradient Fade Effect on sides */
+  /* Gradient Overlays - responsive width */
   .carousel-container::before,
   .carousel-container::after {
     content: "";
     position: absolute;
     top: 0;
-    width: 100px;
+    width: 15%; /* Percentage-based width for mobile */
+    max-width: 100px;
     height: 100%;
     z-index: 2;
   }
@@ -8084,48 +8082,57 @@ body {
     background: linear-gradient(to left, white, transparent);
   }
 
-
   /* 2. The Moving Track */
   .carousel-track {
     display: flex;
-    height: 100%;
-    /* The width must fit all images. We animate half its width. */
-    /* Ensure there are enough images to fill twice the screen width */
     width: max-content; 
-    animation: scrollSmooth 25s linear infinite;
+    animation: scrollSmooth var(--animation-speed) linear infinite;
+    will-change: transform; /* Boosts performance on mobile */
   }
   
-  /* Pause scrolling on hover (optional) */
   .carousel-track:hover {
       animation-play-state: paused;
   }
 
-
-  /* 3. The Individual Images */
+  /* 3. The Images - Using relative sizing */
   .carousel-image {
-    height: 100%;
-    /* Fixed width for consistency, or use auto to respect image aspect ratio */
-    width: 300px; 
-    object-fit: cover; /* Ensures images fill the box without stretching */
-    margin-right: 20px; /* Spacing between images */
+    width: var(--image-width);
+    height: var(--image-height);
+    object-fit: cover;
+    margin-right: var(--gap);
     border-radius: 8px;
+    flex-shrink: 0;
   }
 
-  /* 4. The Infinite Animation */
+  /* 4. The Infinite Animation Logic */
   @keyframes scrollSmooth {
-    0% {
-      transform: translateX(0);
+    0% { transform: translateX(0); }
+    100% { 
+      /* Moves exactly half of the total track width */
+      transform: translateX(-50%); 
     }
-    100% {
-      /* Move left by exactly 50% of the track width. 
-         Since the track holds two duplicate sets, this resets seamlessly. */
-      transform: translateX(-50%);
+  }
+
+  /* MOBILE ADJUSTMENTS */
+  @media (max-width: 600px) {
+    :root {
+      --image-width: 180px; /* Smaller images on mobile */
+      --image-height: 120px;
+      --gap: 10px;
+      --animation-speed: 15s; /* Faster scroll since distance is shorter */
+    }
+    
+    .carousel-container {
+      padding: 10px 0;
     }
   }
 
 
 
-/* Accessibility: focus styles */
+
+
+  /* 1. The Window Container */
+  /*Accessibility: focus styles */
 .papers-table a:focus, .papers-table td:focus { outline: 3px solid #cce4ff; outline-offset: 2px; }
 </style>
 
@@ -8509,7 +8516,7 @@ Srimathi S
 <div style="margin-top: 20px;"></div>
 
                                                     
-    <h4 style="color:#000000; font-size: 18px;"><strong>PHOTO GALLERY</strong></h4>
+    <h4 style="color:#000000; font-size: 18px;"><strong>OUR GALLERY</strong></h4>
 
   
 <div class="carousel-container">
